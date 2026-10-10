@@ -1,0 +1,5 @@
+# 忽略 node_modules 目录，不需要提交依赖
+node_modules/
+
+# 忽略环境变量文件
+.env

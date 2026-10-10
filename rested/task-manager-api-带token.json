@@ -1,0 +1,83 @@
+{
+  "name": "Task Manager API 全流程测试",
+  "requests": [
+    {
+      "method": "GET",
+      "url": "http://localhost:3000/health",
+      "headers": "",
+      "data": ""
+    },
+    {
+      "method": "POST",
+      "url": "http://localhost:3000/api/auth/register",
+      "headers": "Content-Type: application/json\n",
+      "data": "{\"username\":\"alice\",\"password\":\"123456\"}"
+    },
+    {
+      "method": "POST",
+      "url": "http://localhost:3000/api/auth/register",
+      "headers": "Content-Type: application/json\n",
+      "data": "{\"username\":\"alice\",\"password\":\"123456\"}"
+    },
+    {
+      "method": "POST",
+      "url": "http://localhost:3000/api/auth/login",
+      "headers": "Content-Type: application/json\n",
+      "data": "{\"username\":\"alice\",\"password\":\"123456\"}"
+    },
+    {
+      "method": "POST",
+      "url": "http://localhost:3000/api/tasks",
+      "headers": "Content-Type: application/json\nAuthorization: Bearer 20183d7b94a7f6c725f8d3df4349fb53\n",
+      "data": "{\"title\":\"学习 Express\"}"
+    },
+    {
+      "method": "POST",
+      "url": "http://localhost:3000/api/tasks",
+      "headers": "Content-Type: application/json\nAuthorization: Bearer 20183d7b94a7f6c725f8d3df4349fb53\n",
+      "data": "{}"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3000/api/tasks",
+      "headers": "Authorization: Bearer 20183d7b94a7f6c725f8d3df4349fb53\n",
+      "data": ""
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3000/api/tasks?done=true&page=1&limit=10",
+      "headers": "Authorization: Bearer 20183d7b94a7f6c725f8d3df4349fb53\n",
+      "data": ""
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3000/api/tasks/1",
+      "headers": "Authorization: Bearer 20183d7b94a7f6c725f8d3df4349fb53\n",
+      "data": ""
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3000/api/tasks/9999",
+      "headers": "Authorization: Bearer 20183d7b94a7f6c725f8d3df4349fb53\n",
+      "data": ""
+    },
+    {
+      "method": "PUT",
+      "url": "http://localhost:3000/api/tasks/1",
+      "headers": "Content-Type: application/json\nAuthorization: Bearer 20183d7b94a7f6c725f8d3df4349fb53\n",
+      "data": "{\"done\":true}"
+    },
+    {
+      "method": "DELETE",
+      "url": "http://localhost:3000/api/tasks/3",
+      "headers": "Authorization: Bearer 20183d7b94a7f6c725f8d3df4349fb53\n",
+      "data": ""
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3000/api/tasks",
+      "headers": "",
+      "data": ""
+    }
+  ]
+}
