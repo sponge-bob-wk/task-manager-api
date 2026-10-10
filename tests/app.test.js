@@ -216,3 +216,32 @@ test('任务列表只包含自己的任务（数据隔离）', async () => {
   assert.strictEqual(res.status, 200);
   assert.deepStrictEqual(await res.json(), []);
 });
+
+// ---------- 模块 4：错误处理 ----------
+
+test('未匹配的路由返回 404 且格式统一', async () => {
+  const res = await fetch(`${baseUrl}/definitely-not-a-route`);
+  assert.strictEqual(res.status, 404);
+  assert.strictEqual((await res.json()).message, '接口不存在');
+});
+
+test('各类错误响应统一使用 message 字段', async () => {
+  // 400：请求体校验失败
+  const bad = await api('/api/auth/register', {
+    method: 'POST',
+    body: { username: 'nobody' },
+    auth: false,
+  });
+  assert.strictEqual(bad.status, 400);
+  assert.ok('message' in (await bad.json()));
+
+  // 401：未授权
+  const unauthed = await fetch(`${baseUrl}/api/tasks`);
+  assert.strictEqual(unauthed.status, 401);
+  assert.ok('message' in (await unauthed.json()));
+
+  // 404：资源不存在
+  const missing = await api('/api/tasks/99999');
+  assert.strictEqual(missing.status, 404);
+  assert.ok('message' in (await missing.json()));
+});
