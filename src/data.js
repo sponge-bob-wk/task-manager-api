@@ -2,9 +2,9 @@
 // 说明：这些数据保存在内存中，Node.js 进程一重启，所有数据都会丢失。
 // 适合教学和测试，不需要数据库。
 
-const users = [];          // 存放用户对象，例如 { id, username, password }
+const users = [];          // 存放用户对象，例如 { id, username, passwordHash, createdAt }（只存哈希，不存明文）
 const tasks = [];          // 存放任务对象，例如 { id, userId, title, done, createdAt }
-const tokens = new Map();  // token -> userId，登录后生成 token，用于验证用户身份
+const tokens = new Map();  // token -> { userId, createdAt, expiresAt }，登录后生成，带过期时间
 
 let nextUserId = 1;        // 下一个用户 ID 的起始值，每创建一个用户就自增
 let nextTaskId = 1;        // 下一个任务 ID 的起始值，每创建一个任务就自增
